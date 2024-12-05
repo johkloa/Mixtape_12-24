@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mein Weihnachts-Mix</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-image: url('dein-hintergrundbild.jpg');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    #waveform {
+      width: 80%;
+      margin: 20px auto;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      background: #fff;
+      color: #333;
+      border-radius: 5px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    button:hover {
+      background: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Mein Weihnachts-Mix</h1>
+  <div id="waveform"></div>
+  <button id="playPauseBtn">Play</button>
+
+  <script src="https://unpkg.com/wavesurfer.js"></script>
+  <script>
+    // Wavesurfer initialisieren
+    const waveform = WaveSurfer.create({
+      container: '#waveform',
+      waveColor: 'violet',
+      progressColor: 'purple',
+      height: 100,
+      responsive: true,
+    });
+
+    // Audio-Datei laden
+    waveform.load('dein-audiofile.mp3');
+
+    // Play/Pause-Button steuern
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    playPauseBtn.addEventListener('click', () => {
+      if (waveform.isPlaying()) {
+        waveform.pause();
+        playPauseBtn.textContent = 'Play';
+      } else {
+        waveform.play();
+        playPauseBtn.textContent = 'Pause';
+      }
+    });
+  </script>
+</body>
+</html>
